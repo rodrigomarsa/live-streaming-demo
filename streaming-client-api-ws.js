@@ -1,7 +1,14 @@
 'use strict';
 
 const fetchJsonFile = await fetch('./api.json');
-const DID_API = await fetchJsonFile.json();
+// const DID_API = await fetchJsonFile.json();
+const DID_API = {
+  key: 'cm9kcmlnb21hcnRpbnMuYWdyb0BnbWFpbC5jb20:Z4uuEKOuoOi_aTKWTGvBA',
+  url: 'https://api.d-id.com',
+  websocketUrl: 'wss://ws-api.d-id.com',
+  service: 'clips',
+  elevenlabsKey: 'sk_474be4c09304aea16c7ef2ba0e86fdfdcf97f9f65995753a',
+};
 
 if (DID_API.key == '🤫') alert('Please put your api key inside ./api.json and restart..');
 
@@ -50,7 +57,7 @@ const presenterInputByService = {
   },
 };
 
-const PRESENTER_TYPE = DID_API.service === 'clips' ? 'clip' : 'talk';
+const PRESENTER_TYPE = 'clip';
 
 const connectButton = document.getElementById('connect-button');
 let ws;
