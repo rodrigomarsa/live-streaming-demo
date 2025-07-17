@@ -10,7 +10,7 @@ const DID_API = {
   elevenlabsKey: 'sk_474be4c09304aea16c7ef2ba0e86fdfdcf97f9f65995753a',
 };
 
-if (DID_API.key == '🤫') alert('Please put your api key inside ./api.json and restart..');
+if (DID_API.key == '') alert('Please put your api key inside ./api.json and restart..');
 
 const RTCPeerConnection = (
   window.RTCPeerConnection ||
@@ -51,13 +51,11 @@ const presenterInputByService = {
   },
   clips: {
     presenter_id: 'v2_public_alex@qcvo4gupoy',
-    // presenter_id: 'v2_public_amber@Y5K02DLS4m',
     driver_id: 'e3nbserss8',
-    // driver_id: 'PUBLIC_D-ID',
   },
 };
 
-const PRESENTER_TYPE = 'clip';
+const PRESENTER_TYPE = DID_API.service === 'clips' ? 'clip' : 'talk';
 
 const connectButton = document.getElementById('connect-button');
 let ws;
@@ -154,7 +152,7 @@ async function fetchAgentResponse(userText) {
 
   const res = await fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' }, // TODO auth se precisar
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
 
@@ -164,6 +162,14 @@ async function fetchAgentResponse(userText) {
 }
 
 const streamWordButton = document.getElementById('stream-word-button');
+
+userTextInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    streamWordButton.click();
+  }
+});
+
 streamWordButton.onclick = async () => {
   try {
     streamWordButton.disabled = true;
