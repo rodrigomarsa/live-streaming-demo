@@ -3,7 +3,7 @@
 const fetchJsonFile = await fetch('./api.json');
 // const DID_API = await fetchJsonFile.json();
 const DID_API = {
-  key: 'cm9kcmlnb21hcnRpbnMuYWdyb0BnbWFpbC5jb20:Z4uuEKOuoOi_aTKWTGvBA',
+  key: 'bW91cmFtYXJ0aW5zYXZhbGlhY2FvQGdtYWlsLmNvbQ:z_S_fswJxfGV1QSySgzFB',
   url: 'https://api.d-id.com',
   websocketUrl: 'wss://ws-api.d-id.com',
   service: 'clips',
